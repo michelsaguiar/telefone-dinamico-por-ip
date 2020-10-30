@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .update_telefone{
+            color:crimson;
+            font-size: 80px;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 30px 30px 30px 30px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="update_telefone"></div>
+
+    <script type="application/javascript">
+        function geoip(json) {
+
+            // Get country code based on IP
+            var state_code = json.region;
+
+
+            // Set dynamic values in an object
+            var tel_obj = {
+                    telefones: {
+                        'Acre': '1',
+                        'Alagoas': '2',
+                        'Amapa': '3',
+                        'Amazonas': '4',
+                        'Bahia': '5',
+                        'Ceara': '6',
+                        'Distrito Federal': '7',
+                        'Espirito Santo': '8',
+                        'Goias': '9',
+                        'Maranhao': '10',
+                        'Mato Grosso': '11',
+                        'Mato Grosso do Sul': '12',
+                        'Minas Gerais': '13',
+                        'Para': '14',
+                        'Paraiba': '15',
+                        'Parana': '16',
+                        'Pernambuco': '17',
+                        'Piaui': '18',
+                        'Rio de Janeiro': '19',
+                        'Rio Grande do Norte': '20',
+                        'Rio Grande do Sul': '21',
+                        'Rondonia': '22',
+                        'Roraima': '23',
+                        'Santa Catarina': '24',
+                        'Sao Paulo': '25',
+                        'Sergipe': '26',
+                        'Tocantins': '27',
+                    }
+                },
+                get_tel = tel_obj['telefones'][state_code];
+
+            // Check if we have a price for the visitor's country, if not we'll set a default of $12.99
+            if (get_tel == null) {
+                display_tel = '(71) 11111.1111';
+            } else {
+                // Else the price does exist is the array
+                display_tel = get_tel;
+            }
+
+            // Get the element we want to update by class
+            var tel_elem = document.getElementsByClassName('update_telefone');
+
+            // Update each element on the page that uses this class
+            for (var i = 0; i < tel_elem.length; i++) {
+                var str = tel_elem[i].innerHTML;
+                tel_elem[i].innerHTML = display_tel;
+            }
+
+        }
+    </script>
+    <script async src="https://get.geojs.io/v1/ip/geo.js"></script>
+</body>
+
+</html>
